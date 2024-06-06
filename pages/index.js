@@ -4,9 +4,10 @@ import utilStyles from '../styles/utils.module.css';
 import { getSortedPostsData } from '../lib/posts';
 import Link from 'next/link';
 import Date from '../components/date';
+import BlogCard from '../components/blogCard';
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
+  const allPostsData = await getSortedPostsData();
   return {
     props: {
       allPostsData,
