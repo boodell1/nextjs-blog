@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styles from './layout.module.css';
 import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
+import NavBar from './navBar';
 
 const name = 'Austen Boodell';
 export const siteTitle = 'Next.js Sample Website';
@@ -26,7 +27,8 @@ export default function Layout({ children, home }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <header className={styles.header}>
-        {home ? (
+        <NavBar/>
+        {/* {home ? (
           <>
             <Image
               priority
@@ -56,7 +58,7 @@ export default function Layout({ children, home }) {
               </Link>
             </h2>
           </>
-        )}
+        )} */}
       </header>
       <main>{children}</main>
       {!home && (

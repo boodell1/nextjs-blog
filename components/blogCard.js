@@ -2,30 +2,35 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
+import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
-export default function BlogCard() {
+
+import BlogButton from './blogButton';
+
+export default function BlogCard(data) {
+    console.log("blogData in blogCard", data)
+    console.log("title in blogcard", data.blogData.title)
   return (
-    // todo austen height is supposed to hug?
-    <Card sx={{ width: 280, height: 'fit-content', mt: 123, ml:308 }}> 
+    <Card sx={{ width: 345, height: 346, margin_top: 123, margin_left:308 }}> 
       <CardMedia
         component="img"
         alt=""
-        height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
+        height='50%'
+        image={data.blogData.image || '../images/_CardMedia_default.jpg'}
       />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Post Title
+      <CardContent sx={{overflow:'hidden', lineHeight:'1.5em', maxHeight:'4.5em'}}>
+        <Typography variant="h7" component="div">
+          {data.blogData.title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-            Summary
+        <Typography variant="body2" color="text.secondary" >
+            {data.blogData.multi_line}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Read More</Button>
+        <BlogButton route={`/posts/${data.blogData.id}`}></BlogButton>
       </CardActions>
     </Card>
   );
