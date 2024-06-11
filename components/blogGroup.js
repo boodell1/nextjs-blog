@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
-import BlogCard from '/components/blogCard.js'; 
+import BlogCard from '/components/BlogCard.js'; 
 import { styled } from '@mui/material/styles';
 
 

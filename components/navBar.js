@@ -25,8 +25,8 @@ export default function NavBar(title) {
     return (
         <StyledPaper>
             <Toolbar variant='regular'>
-            <Typography variant='h6' marginRight={2}>{title.title}</Typography>
-            <Stack direction='row' spacing={2}>
+            <Typography variant='body1' marginRight={2}>{title.title}</Typography>
+            <Stack direction='row' spacing={1}>
                 <NavLink>Label</NavLink>
                 <NavLink>Label</NavLink>
                 <NavLink>Label</NavLink>

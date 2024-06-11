@@ -16,7 +16,6 @@ export const fetchEntries = async () => {
                 }
             }
         );
-        console.log('axios response', response.data.entries)
         return response.data.entries;
     } catch (error) {
         console.error('Error fetching entries', error);

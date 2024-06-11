@@ -1,9 +1,10 @@
 import Head from 'next/head';
 import styles from './layout.module.css';
 import Link from 'next/link';
-import NavBar from './navBar';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
+import NavBar from '/components/NavBar.js'
+
 
 
 const name = 'Austen Boodell';
