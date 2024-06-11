@@ -18,12 +18,3 @@ const theme = createTheme({
 
 export default theme;
 
-// const palette = {
-//     primary: '#009688',
-//     secondary: '#ff9800'
-// }
-
-// const breakpoints = {
-//     xl: 1400,
-// }
-

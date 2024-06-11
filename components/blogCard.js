@@ -5,73 +5,59 @@ import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import BlogButton from './blogButton';
+import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
 
+
+const StyledCard = styled(Card)(() => ({
+    width: 280,
+    maxHeight: 346,
+    marginLeft: '12px',
+    marginTop: '12px',
+  }));
+
+const StyledContent = styled(CardContent)(() => ({
+    overflow:'hidden',
+    lineHeight:'1.5em',
+    maxHeight:'4.5em',
+}))
+
+const StyledHeader = styled(CardHeader)(() => ({
+    padding: 0,
+}))
+
+const StyledButton = styled(Button)(({theme}) => ({
+    color: theme.palette.secondary.main,
+    borderRadius: '50px',
+    borderColor: theme.palette.secondary.main,
+    textTransform: 'none',
+    '&:hover': {
+        borderColor: theme.palette.secondary.main,
+        backgroundColor: 'white'
+      }
+}))
 
 export default function BlogCard(data) {
-    console.log("blogData in blogCard", data)
-    console.log("title in blogcard", data.blogData.title)
   return (
-    <Card sx={{ width: 345, height: 346, marginLeft: 2, marginTop: 3 }}> 
-      <CardMedia
-        component="img"
-        alt=""
-        height='50%'
-        image={data.blogData.image || '../images/_CardMedia_default.jpg'}
-      />
-      <CardContent sx={{overflow:'hidden', lineHeight:'1.5em', maxHeight:'4.5em'}}>
-        <Typography variant="h7" component="div">
-          {data.blogData.title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary" >
-            {data.blogData.multi_line}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <BlogButton route={`/posts/${data.blogData.id}`}></BlogButton>
-      </CardActions>
-    </Card>
+    <StyledCard> 
+        <Paper variant='elevation' elevation={1}>
+            <CardMedia
+                component="img"
+                alt="article title photo" //todo austen maybe this should be data in cms
+                height='50%'
+                image={data.blogData.image || '../images/_CardMedia_default.jpg'}
+            />
+            <StyledContent>
+                <StyledHeader title={data.blogData.title} titleTypographyProps={{fontSize:'1em' }}></StyledHeader>
+                <Typography variant="body2" color="text.secondary" >
+                    {data.blogData.multi_line}
+                </Typography>
+            </StyledContent>
+            <CardActions>
+                <StyledButton href={`/posts/${data.blogData.id}`} variant="outlined" size='small'>Read more</StyledButton>
+            </CardActions>
+      </Paper>
+    </StyledCard>
   );
 }
-
-
-
-// import styled from '@emotion/styled';
-
-// import mq from '../styles/media-query';
-
-// const CardDiv = styled.div(({ theme }) =>
-//   mq({
-//     background: '#fff',
-//     borderRadius: '10px',
-//     border: `1px solid #f1f2f2`,
-//     boxShadow: '0 5px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-//     width: ['100%', null, '85%', '50%'],
-//   }),
-// );
-
-// const CardContentWrapper = styled.div({
-//   display: 'flex',
-//   flexDirection: 'column',
-//   justifyContent: 'center',
-// });
-
-// const CardTitle = styled.div(() => ({
-//   fontWeight: 600,
-//   marginBottom: '5px',
-//   textAlign: 'center',
-// }));
-
-// /**
-//  * A basic card component that has a title and body.
-//  */
-// const Card = ({ children, title = '' }) => (
-//   <CardDiv>
-//     <CardContentWrapper>
-//       <CardTitle>{title}</CardTitle>
-//       {children}
-//     </CardContentWrapper>
-//   </CardDiv>
-// );
-
-// export default Card;

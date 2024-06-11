@@ -6,29 +6,36 @@ import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { styled } from '@mui/material/styles';
 
 
-export default function NavBar() {
+const StyledPaper = styled(Paper)(({ theme }) => ({
+    direction:'row',
+    backgroundColor: theme.palette.primary.main,
+    color: 'white',
+    height: 64,
+}))
 
+const NavLink = styled(IconButton)(() => ({
+    fontSize: '0.8em', 
+    color: 'white'
+}))
+
+export default function NavBar(title) {
     return (
-        <Paper direction='row' sx={{backgroundColor:'#009688', color:'white', height:64}}>
-            <Toolbar variant='regular' width='100%'>
-            <Typography variant='h4' marginRight={3}>Title</Typography>
-            <Stack direction='row' spacing={3}>
-                <IconButton size='small' sx={{color:'white'}}>Label</IconButton>
-                <IconButton size='small' sx={{color:'white'}}>Label</IconButton>
-                <IconButton size='small' sx={{color:'white'}}>Label</IconButton>
+        <StyledPaper>
+            <Toolbar variant='regular'>
+            <Typography variant='h6' marginRight={2}>{title.title}</Typography>
+            <Stack direction='row' spacing={2}>
+                <NavLink>Label</NavLink>
+                <NavLink>Label</NavLink>
+                <NavLink>Label</NavLink>
             </Stack>
             <Stack direction='row' marginLeft='auto' marginRight={0} spacing={1}>
                 <ShoppingCartIcon sx={{color:'white'}}></ShoppingCartIcon>
                 <AccountCircleIcon sx={{color:'#BDBDBD'}}></AccountCircleIcon>
             </Stack>
             </Toolbar>
-        </Paper>
+        </StyledPaper>
     );
 }
-
-// width: 100%;
-// /* align-self: end; */
-// /* align-items: end; */
-// direction: rtl;

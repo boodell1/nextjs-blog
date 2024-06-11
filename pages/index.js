@@ -15,14 +15,14 @@ export async function getStaticProps() {
 
 export default function Home({ allPostsData }) {
   return (
-    <Layout home>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <BlogGroup data={allPostsData}></BlogGroup>
-      </section>
-    </Layout>
+      <Layout home>
+        <Head>
+          <title>{siteTitle}</title>
+        </Head>
+        <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+          <h2 className={utilStyles.headingLg}>Blog</h2>
+          <BlogGroup data={allPostsData}></BlogGroup>
+        </section>
+      </Layout>
   );
 }
