@@ -1,23 +1,14 @@
 import Head from 'next/head';
 import styles from './layout.module.css';
 import Link from 'next/link';
-import Box from '@mui/material/Box';
-import { styled } from '@mui/material/styles';
 import NavBar from '/components/NavBar.js'
 
-
-
-const name = 'Austen Boodell';
 export const siteTitle = 'Next.js Sample Website';
-
-const StyledBox = styled(Box)(({ theme }) => ({
-  maxWidth: theme.breakpoints.values.xl, //todo austen, check that this is what the xl breakpoint means
-}))
 
 
 export default function Layout({ children, home, data }) {
   return (
-    <StyledBox>
+    <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -34,12 +25,12 @@ export default function Layout({ children, home, data }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <NavBar title={siteTitle}/>
-      <main>{children}</main>
+      <main style={{marginTop:64}}>{children}</main>
       {!home && (
         <div className={styles.backToHome}>
           <Link href="/">← Back to home</Link>
         </div>
       )}
-    </StyledBox>
+    </>
   );
 }

@@ -12,15 +12,19 @@ import { styled } from '@mui/material/styles';
 
 const StyledCard = styled(Card)(() => ({
     width: 280,
-    maxHeight: 346,
     marginLeft: '12px',
     marginTop: '12px',
+    display: 'flex',
+    flexDirection: 'column',
   }));
 
 const StyledContent = styled(CardContent)(() => ({
     overflow:'hidden',
     lineHeight:'1.5em',
-    maxHeight:'4.5em',
+    display: 'flex',
+    flexGrow: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
 }))
 
 const StyledHeader = styled(CardHeader)(() => ({
@@ -38,26 +42,34 @@ const StyledButton = styled(Button)(({theme}) => ({
       }
 }))
 
-export default function BlogCard(data) {
+const StyledSummary = styled(Typography)(() => ({
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    display: '-webkit-box',
+    WebkitLineClamp: 3, /* number of lines to show */
+    lineClamp: 3,
+    WebkitBoxOrient: 'vertical',
+}))
+
+
+
+export default function BlogCard({key, title, id, image, multi_line}) {
   return (
-    <StyledCard> 
-        <Paper variant='elevation' elevation={1}>
-            <CardMedia
-                component="img"
-                alt="article title photo" //todo austen maybe this should be data in cms
-                height='50%'
-                image={data.blogData.image || '../images/_CardMedia_default.jpg'}
-            />
-            <StyledContent>
-                <StyledHeader title={data.blogData.title} titleTypographyProps={{fontSize:'1em' }}></StyledHeader>
-                <Typography variant="body2" color="text.secondary" >
-                    {data.blogData.multi_line}
-                </Typography>
-            </StyledContent>
-            <CardActions>
-                <StyledButton href={`/posts/${data.blogData.id}`} variant="outlined" size='small'>Read more</StyledButton>
-            </CardActions>
-      </Paper>
+    <StyledCard key={key} data-testid="blog-card"> 
+        <CardMedia
+            component="img"
+            alt="article title photo" 
+            image={image || '../images/_CardMedia_default.jpg'}
+        />
+        <StyledContent>
+            <StyledHeader title={title} titleTypographyProps={{fontSize:'1em' }}></StyledHeader>
+            <StyledSummary variant="body2">
+                {multi_line}
+            </StyledSummary>
+        </StyledContent>
+        <CardActions>
+            <StyledButton href={`/posts/${id}`} variant="outlined" size='small'>Read more</StyledButton>
+        </CardActions>
     </StyledCard>
   );
 }

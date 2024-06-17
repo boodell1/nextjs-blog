@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { styled } from '@mui/material/styles';
+import { AppBar, Container } from '@mui/material';
 
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -14,6 +15,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.primary.main,
     color: 'white',
     height: 64,
+    display: 'flex',
 }))
 
 const NavLink = styled(IconButton)(() => ({
@@ -23,19 +25,21 @@ const NavLink = styled(IconButton)(() => ({
 
 export default function NavBar(title) {
     return (
-        <StyledPaper>
-            <Toolbar variant='regular'>
-            <Typography variant='body1' marginRight={2}>{title.title}</Typography>
-            <Stack direction='row' spacing={1}>
-                <NavLink>Label</NavLink>
-                <NavLink>Label</NavLink>
-                <NavLink>Label</NavLink>
-            </Stack>
-            <Stack direction='row' marginLeft='auto' marginRight={0} spacing={1}>
-                <ShoppingCartIcon sx={{color:'white'}}></ShoppingCartIcon>
-                <AccountCircleIcon sx={{color:'#BDBDBD'}}></AccountCircleIcon>
-            </Stack>
-            </Toolbar>
-        </StyledPaper>
+        <AppBar data-testid='navbar'>
+            <Container maxWidth='xl'>
+                <Toolbar variant='regular'>
+                    <Typography variant='body1' marginRight={2}>{title.title}</Typography>
+                    <Stack direction='row' spacing={1}>
+                        <NavLink>Label</NavLink>
+                        <NavLink>Label</NavLink>
+                        <NavLink>Label</NavLink>
+                    </Stack>
+                    <Stack direction='row' marginLeft='auto' marginRight={0} spacing={1}>
+                        <ShoppingCartIcon data-testid="ShoppingCartIcon" sx={{color:'white'}}></ShoppingCartIcon>
+                        <AccountCircleIcon data-testid="AccountCircleIcon" sx={{color:'#BDBDBD'}}></AccountCircleIcon>
+                    </Stack>
+                </Toolbar>
+            </Container>
+        </AppBar>
     );
 }

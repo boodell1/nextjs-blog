@@ -12,14 +12,12 @@ const CardGrid = styled(Grid)(() => ({
 
 export default function BlogGroup(data) {
     return(
-        <CardGrid container>
-            {data.data.map(blog => {
-                return(
-                    <CardGrid item>
-                        <BlogCard blogData={blog}></BlogCard>
-                    </CardGrid>
-                )
-            })}
+        <CardGrid container data-testid="card-grid">
+            {data.data.map(({title, image, id, multi_line}) => (
+                    <React.Fragment key={id}>
+                        <BlogCard title={title} image={image} id={id} multi_line={multi_line}/>
+                    </React.Fragment>
+            ))}
         </CardGrid>
     )
 }

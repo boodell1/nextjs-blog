@@ -1,37 +1,44 @@
+import React from 'react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom'
-// import renderer from 'react-test-renderer';
-import { render, screen } from '@testing-library/react'
 import NavBar from '../components/navBar.js'
 
-// describe('NavBar', () => {
-//     it('should have Blog text', () => {
-//         render(<NavBar/>)
-//         const myElem = screen.getByText('Blog')
-//         expect(myElem).toBeInTheDocument()
-//     })
-// })
+describe('NavBar', () => {
+  const title = 'Test Title';
 
-// it('changes the class when hovered', () => {
-//     const title = 'test title'
-//     const component = render(
-//         <NavBar title={title}></NavBar>,
-//     );
-//     let tree = component.toJSON();
-//     expect(tree).toMatchSnapshot();
+  it('renders without crashing', () => {
+    render(<NavBar title={title} />);
+  });
 
-//     // manually trigger the callback
-//     renderer.act(() => {
-//         tree.props.onMouseEnter();
-//     });
-//     // re-rendering
-//     tree = component.toJSON();
-//     expect(tree).toMatchSnapshot();
+  it('displays the correct title', () => {
+    render(<NavBar title={title} />);
+    expect(screen.getByText('Test Title')).toBeInTheDocument();
+  });
 
-//     // manually trigger the callback
-//     renderer.act(() => {
-//         tree.props.onMouseLeave();
-//     });
-//     // re-rendering
-//     tree = component.toJSON();
-//     expect(tree).toMatchSnapshot();
-// });
+  it('displays 3 labels', () => {
+    render(<NavBar title={title} />);
+    const navLinks = screen.getAllByText('Label');
+    expect(navLinks).toHaveLength(3);
+  });
+
+  it('displays the ShoppingCartIcon', () => {
+    render(<NavBar title={title} />);
+    expect(screen.getByTestId('ShoppingCartIcon')).toBeInTheDocument();
+  });
+
+  it('displays the AccountCircleIcon', () => {
+    render(<NavBar title={title} />);
+    expect(screen.getByTestId('AccountCircleIcon')).toBeInTheDocument();
+  });
+
+  it('applies styles correctly', () => {
+    render(<NavBar title={title} />);
+    const paper = screen.getByTestId('navbar');
+
+    const shoppingCartIcon = screen.getByTestId('ShoppingCartIcon');
+    const accountCircleIcon = screen.getByTestId('AccountCircleIcon');
+    
+    expect(shoppingCartIcon).toHaveStyle({ color: 'white' });
+    expect(accountCircleIcon).toHaveStyle({ color: '#BDBDBD' });
+  });
+});

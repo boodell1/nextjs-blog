@@ -15,6 +15,8 @@ const config = {
   moduleNameMapper: {
     // 'absolute-path': 'relative-path'
     'jsroot/io': '<src>/node_modules/jsroot/',
+    'components/BlogCard.js': '/Users/austenboodell/Desktop/onboarding/nextjs-blog/components/BlogCard.js',
+    'components/NavBar.js': '/Users/austenboodell/Desktop/onboarding/nextjs-blog/components/NavBar.js'
 }
 }
  
